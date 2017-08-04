@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: root
+
+  environment:
+    no_proxy: 127.0.0.1,localhost
+    ftp_proxy: http://proxyHost:proxyPort
+    http_proxy: http://proxyHost:proxyPort
+    https_proxy: http://proxyHost:proxyPort
+
+  tasks:
+  - name: Update repositories and update packages needed packages to latest versions
+    apk:
+      name: nodejs-current,nodejs-current-npm
+      state: latest
+      update_cache: yes
